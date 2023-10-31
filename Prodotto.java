@@ -1,4 +1,4 @@
-public class Prodotto {
+public class Prodotto implements Comparable<Prodotto> {
     private String nome; 
     private int prezzo; 
     private int quantita;
@@ -23,5 +23,10 @@ public class Prodotto {
     @Override
     public String toString(){
         return "Nome: " + nome + ". Prezzo: " + prezzo + "$. Quantita': " + quantita; 
+    }
+
+    @Override 
+    public int compareTo(Prodotto o){
+        return nome.compareTo(o.getNome()); 
     }
 }

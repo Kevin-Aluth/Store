@@ -4,17 +4,18 @@ public class Main{
     //userò la convenzione delle parentesi graffe di java giusto perché mi sento buono
     public static void main(String[] args) {
         Utilities.accounts.add(new Account("kevinoh", "ciao123", true));
-        while(Utilities.activeAccount == null && !hasQuit){
+        Utilities.prodotti.add(new Prodotto("sapone", 7, 100)); 
+        Utilities.prodotti.add(new Prodotto("shampoo", 12, 70)); 
+        Utilities.prodotti.add(new Prodotto("schiuma da barba", 15, 40)); 
+        Utilities.prodotti.add(new Prodotto("rasoio", 19, 60)); 
+        while(!hasQuit){
             mostraMenuAccesso();
-        } 
 
-        if(Utilities.activeAccount != null)
-        {
-            System.out.println("Benvenuto, " + Utilities.activeAccount.getUsername());
-            while(!hasQuit){
+            if(Utilities.activeAccount != null)System.out.println("Benvenuto, " + Utilities.activeAccount.getUsername());
+            while(Utilities.activeAccount != null){
                 mostraMenu(Utilities.activeAccount.getIsAdmin());
             }
-        }
+        } 
     }
 
     static void mostraMenu(boolean isAdmin)
@@ -28,6 +29,7 @@ public class Main{
             System.out.println("0) Quitta\n1) Visualizza prodotti" +
             "\n2) Cerca prodotto"); 
         }
+        //switch case for input and preventing adming privileges for non admin accounts
         String input = Utilities.myScanner.nextLine(); 
         switch (input) {
             case "1":
@@ -49,7 +51,7 @@ public class Main{
                 else System.out.println("Seleziona opzione valida"); 
                 break; 
             case "0": 
-                hasQuit = true; 
+                Utilities.activeAccount = null; 
                 break; 
             default:
                 break;

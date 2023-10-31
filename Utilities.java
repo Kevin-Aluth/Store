@@ -1,8 +1,11 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List; 
 import java.util.Scanner;
 
 public class Utilities{
+    //NOTA: E' capitato che a volte veniva stampato il menu del Main due volte.
+    //per risolvere questa cosa ho aggiunto un nextLine() vuoto dove era necessario.
     public static List<Account> accounts = new ArrayList<>(); 
     public static List<Prodotto> prodotti = new ArrayList<>(); 
     public static Account activeAccount = null; 
@@ -131,6 +134,7 @@ public class Utilities{
                 break; 
             } 
         }
+        //modifying product if name is unique or equal to the old one
         if(numToChange == -1){
             System.out.println("Prodotto inesistente. ");
         }
@@ -162,7 +166,22 @@ public class Utilities{
     }
 
     public static void cercaProdotto(){
+        System.out.print("Cerca...");
         String nome = myScanner.nextLine(); 
         nome = nome.toLowerCase(); 
+        System.out.println("Risultati ricerca: ");
+        List<Prodotto> newProdotti = new ArrayList<>(); 
+        //ricerca attraverso la funzione contains
+        for(int i = 0; i < prodotti.size(); i++){
+            if(prodotti.get(i).getNome().contains(nome)){
+                newProdotti.add(prodotti.get(i)); 
+            }
+        }
+        //stampa della nuova lista coi nomi che contengono la stringa cercata
+        //il sort avviene correttamente grazie all'override di "compareTo"
+        Collections.sort(newProdotti); 
+        for(Prodotto j : newProdotti){
+            System.out.println(j);
+        }
     }
 }
