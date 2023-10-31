@@ -5,6 +5,7 @@ public class Main{
         while(Utilities.activeAccount == null)
         {
             mostraMenuAccesso();
+            //this is a comment
         } 
     }
 
