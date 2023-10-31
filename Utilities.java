@@ -68,6 +68,7 @@ public class Utilities{
         boolean isNameCorrect = true; 
         System.out.println("Inserisci nome prodotto: ");
         String nome = myScanner.nextLine(); 
+        nome = nome.toLowerCase(); 
         for(int i = 0; i < prodotti.size(); i++){
             if(prodotti.get(i).getNome().equals(nome)) {
                 isNameCorrect = false; 
@@ -84,7 +85,7 @@ public class Utilities{
             System.out.println("Prodotto aggiunto. ");
             myScanner.nextLine(); 
             prodotti.add(new Prodotto(nome, prezzo, quantita)); 
-        } 
+        }
         else{
             System.out.println("Impossibile aggiungere, prodotto con lo stesso nome gia' esistente. "); 
             myScanner.nextLine(); 
@@ -95,6 +96,7 @@ public class Utilities{
         //getting name
         System.out.println("Seleziona nome del prodotto da eliminare: "); 
         String nome = myScanner.nextLine(); 
+        nome = nome.toLowerCase(); 
         boolean hasDeleted = false; 
         //removing product if it exists
         for(int i = 0; i < prodotti.size(); i++){
@@ -115,5 +117,52 @@ public class Utilities{
         for(Prodotto j : prodotti){
             System.out.println(j);
         }
+    }
+
+    public static void modificaProdotto(){
+        System.out.println("Seleziona nome del prodotto da modificare: "); 
+        String nome = myScanner.nextLine(); 
+        nome = nome.toLowerCase(); 
+        int numToChange = -1; 
+        //setting numToChange to right product
+        for(int i = 0; i < prodotti.size(); i++){
+            if(prodotti.get(i).getNome().equals(nome)){
+                numToChange = i; 
+                break; 
+            } 
+        }
+        if(numToChange == -1){
+            System.out.println("Prodotto inesistente. ");
+        }
+        else{
+            System.out.println("Inserisci nome: ");
+            nome = myScanner.nextLine(); 
+            nome = nome.toLowerCase(); 
+            System.out.println("Inserisci prezzo: ");
+            int prezzo = myScanner.nextInt(); 
+            System.out.println("Inserisci quantita': ");
+            int quantita = myScanner.nextInt(); 
+            
+            boolean haModificato = true; 
+            for(int i = 0; i < prodotti.size(); i++){
+                if(nome.equals(prodotti.get(i).getNome()) && i != numToChange){
+                    haModificato = false; 
+                    System.out.println("Impossibile modificare: nome prodotto gia' esistente");
+                    myScanner.nextLine(); 
+                    break; 
+                }
+            }
+            if(haModificato){
+                prodotti.remove(numToChange); 
+                prodotti.add(numToChange, new Prodotto(nome, prezzo, quantita)); 
+                System.out.println("Prodotto modificato"); 
+                myScanner.nextLine(); 
+            }
+        }
+    }
+
+    public static void cercaProdotto(){
+        String nome = myScanner.nextLine(); 
+        nome = nome.toLowerCase(); 
     }
 }

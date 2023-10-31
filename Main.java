@@ -33,9 +33,16 @@ public class Main{
             case "1":
                 Utilities.mostraProdotti(); 
                 break;
+            case "2": 
+                Utilities.cercaProdotto(); 
+                break; 
             case "3":
                 if(isAdmin) Utilities.aggiungiProdotto();
                 else System.out.println("Seleziona opzione valida");  
+                break; 
+            case "4":
+                if(isAdmin) Utilities.modificaProdotto();
+                else System.out.println("Seleziona opzione valida"); 
                 break; 
             case "5":
                 if(isAdmin) Utilities.rimuoviProdotto();
