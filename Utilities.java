@@ -31,7 +31,6 @@ public class Utilities{
         String passwordInput = myScanner.nextLine(); 
         //adding user to list
         accounts.add(new Account(usernameInput, passwordInput, false)); 
-        System.out.println(accounts);
     }
 
     public static void Accedi(){
@@ -61,6 +60,60 @@ public class Utilities{
         }
         else{
             System.out.println("Username inesistente");
+        }
+    }
+
+    public static void aggiungiProdotto(){
+        //getting name and checking if it already exists
+        boolean isNameCorrect = true; 
+        System.out.println("Inserisci nome prodotto: ");
+        String nome = myScanner.nextLine(); 
+        for(int i = 0; i < prodotti.size(); i++){
+            if(prodotti.get(i).getNome().equals(nome)) {
+                isNameCorrect = false; 
+            } 
+        }
+        //getting price and amt
+        System.out.println("Inserisci prezzo: "); 
+        int prezzo = myScanner.nextInt(); 
+        System.out.println("Inserisci quantita' disponibile del prodotto: "); 
+        int quantita = myScanner.nextInt(); 
+
+        //adding product
+        if(isNameCorrect){
+            System.out.println("Prodotto aggiunto. ");
+            myScanner.nextLine(); 
+            prodotti.add(new Prodotto(nome, prezzo, quantita)); 
+        } 
+        else{
+            System.out.println("Impossibile aggiungere, prodotto con lo stesso nome gia' esistente. "); 
+            myScanner.nextLine(); 
+        }
+    }
+
+    public static void rimuoviProdotto(){
+        //getting name
+        System.out.println("Seleziona nome del prodotto da eliminare: "); 
+        String nome = myScanner.nextLine(); 
+        boolean hasDeleted = false; 
+        //removing product if it exists
+        for(int i = 0; i < prodotti.size(); i++){
+            if(prodotti.get(i).getNome().equals(nome)) {
+                prodotti.remove(i);
+                hasDeleted = true; 
+                System.out.println("Prodotto rimosso. ");
+                break; 
+            } 
+        }
+        if(!hasDeleted) System.out.println("Prodotto inesistente. ");
+    }
+
+    public static void mostraProdotti()
+    {
+        //printing products with a for
+        System.out.println("Prodotti disopnibili"); 
+        for(Prodotto j : prodotti){
+            System.out.println(j);
         }
     }
 }
