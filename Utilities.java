@@ -37,7 +37,6 @@ public class Utilities{
     }
 
     public static void Accedi(){
-        Scanner myScanner = new Scanner(System.in);
         String usernameInput = myScanner.nextLine(); 
         usernameInput = usernameInput.toLowerCase(); 
         
